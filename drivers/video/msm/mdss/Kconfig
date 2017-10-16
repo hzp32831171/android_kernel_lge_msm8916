@@ -44,6 +44,13 @@ config FB_MSM_MDSS_MDP3
 	The MDP3 provides support for an older version display controller
 	included in latest display sub-system, known as MDSS.
 
+config FB_MSM_MDSS_KCAL_CTRL
+	depends on FB_MSM_MDSS
+	bool "MDSS color control"
+	---help---
+	  Enable sysfs for post-processing control of mdss-mdp5 display
+	  controllers in MDSS.
+
 config LCD_KCAL
         bool "Enable sysfs for LCD KCAL"
         default n
@@ -133,9 +140,44 @@ config LGE_DISPLAY_TUNING
 	Support LCD initial code, mipi clock, and backlight tuning
 	Support sysfs
 
-config FB_MSM_MDSS_KCAL_CTRL
-	depends on FB_MSM_MDSS
-	bool "MDSS color control"
+config LGE_DISPLAY_DFPS
+	bool "LG Dynamic LCD Refresh Driver"
+	select ARCH_HAS_OPP
+	select DEVFREQ_GOV_SIMPLE_ONDEMAND
+	select LGE_DISPLAY_COMMON
+	default n
 	---help---
-	  Enable sysfs for post-processing control of mdss-mdp5 display
-	  controllers in MDSS.
+	This adds the DEVFREQ driver for LG display
+
+config LGE_DISPLAY_VSYNC_SKIP
+	bool "MDSS VSYNC Skip scheme"
+	select LGE_DISPLAY_COMMON
+	default n
+	---help---
+	This feature provides VSYNC skip scheme.
+
+config LGE_DISPLAY_COMMON
+	bool "Display Common code"
+	default n
+	---help---
+	This feature provides display common code.
+
+config LGE_DISPLAY_POWER_SEQUENCE
+	bool "lge panel power sequence"
+	default n
+	---help---
+	Support panel power sequence
+
+config LGE_DISPLAY_CODE_REFACTORING
+	bool "Enable mdss code refactoring"
+	default n
+
+config LGE_DISPLAY_AOD_SUPPORT
+    bool "Enable always on display"
+    default n
+    ---help---
+    if you say yes here you get support for the 'Always On Display'
+config LGE_DISPLAY_DSI_CMD_HS_DISABLE
+	bool "Disable mipi cmd in hs mode"
+
+
