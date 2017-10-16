@@ -133,43 +133,9 @@ config LGE_DISPLAY_TUNING
 	Support LCD initial code, mipi clock, and backlight tuning
 	Support sysfs
 
-config LGE_DISPLAY_DFPS
-	bool "LG Dynamic LCD Refresh Driver"
-	select ARCH_HAS_OPP
-	select DEVFREQ_GOV_SIMPLE_ONDEMAND
-	select LGE_DISPLAY_COMMON
-	default n
+config FB_MSM_MDSS_KCAL_CTRL
+	depends on FB_MSM_MDSS
+	bool "MDSS color control"
 	---help---
-	This adds the DEVFREQ driver for LG display
-
-config LGE_DISPLAY_VSYNC_SKIP
-	bool "MDSS VSYNC Skip scheme"
-	select LGE_DISPLAY_COMMON
-	default n
-	---help---
-	This feature provides VSYNC skip scheme.
-
-config LGE_DISPLAY_COMMON
-	bool "Display Common code"
-	default n
-	---help---
-	This feature provides display common code.
-
-config LGE_DISPLAY_POWER_SEQUENCE
-	bool "lge panel power sequence"
-	default n
-	---help---
-	Support panel power sequence
-
-config LGE_DISPLAY_CODE_REFACTORING
-	bool "Enable mdss code refactoring"
-	default n
-
-config LGE_DISPLAY_AOD_SUPPORT
-    bool "Enable always on display"
-    default n
-    ---help---
-    if you say yes here you get support for the 'Always On Display'
-config LGE_DISPLAY_DSI_CMD_HS_DISABLE
-	bool "Disable mipi cmd in hs mode"
-	default n
+	  Enable sysfs for rgb/lut control for mdss-mdp display controllers
+	  in the MDSS sub-system.
